@@ -2,579 +2,1424 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>REP360 - AureliAxis Pharmaceuticals</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AureliAxis Pharmaceuticals | 奥瑞立科医药</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4A90E2',
+                        secondary: '#5D9CEC',
+                        accent: '#E6F2FF',
+                        success: '#00B42A',
+                        warning: '#FF7D00',
+                        danger: '#D9534F',
+                        dark: '#0A3D62',
+                        light: '#F6F9FB'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        notosans: ['Noto Sans SC', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .gradient-bg {
+                background: linear-gradient(135deg, #4A90E2, #5D9CEC);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(74, 144, 226, 0.15);
+            }
+            .nav-link {
+                position: relative;
+            }
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -4px;
+                left: 0;
+                background-color: #4A90E2;
+                transition: width 0.3s ease;
+            }
+            .nav-link:hover::after {
+                width: 100%;
+            }
+            .active-nav::after {
+                width: 100%;
+            }
+            /* Logo Styles */
+            .logo-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 48px;
+                max-width: 200px;
+            }
+            .logo-container img {
+                max-height: 100%;
+                width: auto;
+                object-fit: contain;
+                transition: transform 0.3s ease;
+            }
+            .logo-container img:hover {
+                transform: scale(1.05);
+            }
+            .footer-logo-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 40px;
+                max-width: 180px;
+            }
+            .footer-logo-container img {
+                max-height: 100%;
+                width: auto;
+                object-fit: contain;
+            }
+            /* Responsive Logo */
+            @media (max-width: 768px) {
+                .logo-container {
+                    height: 40px;
+                    max-width: 160px;
+                }
+                .footer-logo-container {
+                    height: 32px;
+                    max-width: 140px;
+                }
+            }
+            @media (max-width: 480px) {
+                .logo-container {
+                    height: 36px;
+                    max-width: 140px;
+                }
+                .footer-logo-container {
+                    height: 28px;
+                    max-width: 120px;
+                }
+            }
+            /* Logo Fallback */
+            .logo-fallback {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #4A90E2, #5D9CEC);
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                color: white;
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
-<body>
-    <div id="app">
-        <!-- Global Top Bar -->
-        <header class="top-bar">
-            <div class="app-title">
-                <div class="brand-logo">AureliAxis</div>
-                <div class="app-name">REP360</div>
+<body class="font-inter font-notosans bg-light text-gray-800">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="logo-container">
+                        <img src="images/logo.svg" alt="AureliAxis Pharmaceuticals" class="h-12 w-auto object-contain" onerror="this.src='images/logo.png'">
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link active-nav font-medium text-gray-700 hover:text-primary">公司概述</a>
+                    <a href="#products" class="nav-link font-medium text-gray-700 hover:text-primary">产品管线</a>
+                    <a href="#organization" class="nav-link font-medium text-gray-700 hover:text-primary">组织架构</a>
+                    <a href="#kpi" class="nav-link font-medium text-gray-700 hover:text-primary">KPI体系</a>
+                    <a href="#systems" class="nav-link font-medium text-gray-700 hover:text-primary">管理系统</a>
+                    <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-primary">联系我们</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
             </div>
-            <div class="role-scope-switcher" id="roleSwitcher">
-                <div class="chip">
-                    <span class="role-text">销售经理</span>
-                    <span class="role-name">- 李雷</span>
-                    <span class="dropdown-icon">▼</span>
-                </div>
-            </div>
-            <div class="alerts-bell" id="alertsBell">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                </svg>
-                <span class="badge">3</span>
-            </div>
-        </header>
-        
-        <!-- Role Switcher Dropdown -->
-        <div class="role-dropdown" id="roleDropdown">
-            <div class="dropdown-header">选择角色</div>
-            <div class="dropdown-item active" data-role="sales-manager" data-name="李雷">
-                <span class="role-icon">👤</span>
-                <span class="role-info">
-                    <span class="role-title">销售经理</span>
-                    <span class="role-desc">管理直接下属医药代表</span>
-                </span>
-            </div>
-            <div class="dropdown-item" data-role="region-director" data-name="华东区">
-                <span class="role-icon">🏙️</span>
-                <span class="role-info">
-                    <span class="role-title">区域总监</span>
-                    <span class="role-desc">华东区域整体管理</span>
-                </span>
-            </div>
-            <div class="dropdown-item" data-role="marketing-manager" data-name="市场部">
-                <span class="role-icon">📊</span>
-                <span class="role-info">
-                    <span class="role-title">市场部经理</span>
-                    <span class="role-desc">市场活动与销售联动</span>
-                </span>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="#about" class="font-medium text-gray-700 hover:text-primary">公司概述</a>
+                    <a href="#products" class="font-medium text-gray-700 hover:text-primary">产品管线</a>
+                    <a href="#organization" class="font-medium text-gray-700 hover:text-primary">组织架构</a>
+                    <a href="#kpi" class="font-medium text-gray-700 hover:text-primary">KPI体系</a>
+                    <a href="#systems" class="font-medium text-gray-700 hover:text-primary">管理系统</a>
+                    <a href="#contact" class="font-medium text-gray-700 hover:text-primary">联系我们</a>
+                </nav>
             </div>
         </div>
+    </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Home Dashboard -->
-            <section id="home" class="screen active">
-                <!-- Header Chips -->
-                <div class="header-chips">
-                    <div class="chip">月份</div>
-                    <div class="chip">所有品牌</div>
+    <!-- Hero Section - First Version -->
+    <section class="relative overflow-hidden gradient-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-shadow">创新驱动健康，科技引领未来</h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">AureliAxis Pharmaceuticals 致力于为患者提供高质量的创新治疗方案</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#products" class="bg-white text-primary font-semibold py-3 px-8 rounded-lg hover:bg-opacity-90 transition duration-300">
+                        探索产品管线
+                    </a>
+                    <a href="#about" class="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-primary transition duration-300">
+                        了解公司
+                    </a>
                 </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-light to-transparent"></div>
+    </section>
 
-                <!-- KPI Strip -->
-                <div class="kpi-strip">
-                    <div class="kpi-card">
-                        <div class="kpi-value">85%</div>
-                        <div class="kpi-label">达成率</div>
-                        <div class="kpi-spark">
-                            <svg width="60" height="20" viewBox="0 0 60 20">
-                                <path d="M0,15 L10,12 L20,14 L30,8 L40,10 L50,6 L60,9" fill="none" stroke="#4DA3D9" stroke-width="2"></path>
-                            </svg>
-                        </div>
-                        <div class="info-icon">i</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-value">78%</div>
-                        <div class="kpi-label">覆盖率</div>
-                        <div class="kpi-spark">
-                            <svg width="60" height="20" viewBox="0 0 60 20">
-                                <path d="M0,10 L10,8 L20,12 L30,9 L40,14 L50,11 L60,13" fill="none" stroke="#4DA3D9" stroke-width="2"></path>
-                            </svg>
-                        </div>
-                        <div class="info-icon">i</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-value">92</div>
-                        <div class="kpi-label">质量</div>
-                        <div class="kpi-spark">
-                            <svg width="60" height="20" viewBox="0 0 60 20">
-                                <path d="M0,8 L10,10 L20,7 L30,12 L40,9 L50,14 L60,12" fill="none" stroke="#4DA3D9" stroke-width="2"></path>
-                            </svg>
-                        </div>
-                        <div class="info-icon">i</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-value">75%</div>
-                        <div class="kpi-label">新业务获取</div>
-                        <div class="kpi-spark">
-                            <svg width="60" height="20" viewBox="0 0 60 20">
-                                <path d="M0,12 L10,9 L20,13 L30,10 L40,15 L50,12 L60,14" fill="none" stroke="#4DA3D9" stroke-width="2"></path>
-                            </svg>
-                        </div>
-                        <div class="info-icon">i</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-value">绿色</div>
-                        <div class="kpi-label">合规</div>
-                        <div class="kpi-spark">
-                            <svg width="60" height="20" viewBox="0 0 60 20">
-                                <path d="M0,10 L10,10 L20,10 L30,10 L40,10 L50,10 L60,10" fill="none" stroke="#4DA3D9" stroke-width="2"></path>
-                            </svg>
-                        </div>
-                        <div class="info-icon">i</div>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">公司概述</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold text-dark mb-4">关于 AureliAxis</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        AureliAxis Pharmaceuticals（奥瑞立科医药）是一家专注于创新药物研发和商业化的虚拟外企医药公司，致力于为患者提供高质量的治疗方案，特别是在血液肿瘤和心血管领域。
+                    </p>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        公司拥有一支专业的团队，包括医学、销售、市场、数字化等多个领域的专家，共同推动创新药物的研发和商业化进程。
+                    </p>
+                    <div class="bg-accent p-4 rounded-lg mb-6">
+                        <h4 class="font-semibold text-primary mb-2">核心领域</h4>
+                        <p class="text-gray-700">血液肿瘤、心血管疾病</p>
                     </div>
                 </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20pharmaceutical%20company%20office%20with%20blue%20accent%20colors%20and%20medical%20technology%20elements&image_size=landscape_16_9" alt="AureliAxis Office" class="w-full h-auto">
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                <h3 class="text-2xl font-semibold text-dark mb-2 text-center">数字化能力域</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">我们构建了全面的数字化能力域，通过六大核心系统赋能业务发展，提升运营效率和决策质量</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center card-hover shadow-md">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-user-md text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-dark mb-2">HCP360</h4>
+                        <p class="text-gray-600">医生全生命周期管理系统，实现精准定位、高效互动和价值传递</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center card-hover shadow-md">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-hospital-o text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-dark mb-2">HCO360</h4>
+                        <p class="text-gray-600">医院全生命周期管理系统，优化医院合作，提升医疗服务质量</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center card-hover shadow-md">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-line-chart text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-dark mb-2">REP360</h4>
+                        <p class="text-gray-600">销售代表KPI可视化系统，实现分层级权限管控和精准KPI洞察</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center card-hover shadow-md">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-flask text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-dark mb-2">Medical360</h4>
+                        <p class="text-gray-600">医学事务管理系统，支持MSL工作流程和医学洞察管理</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center card-hover shadow-md">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-file-text-o text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-dark mb-2">Content360</h4>
+                        <p class="text-gray-600">内容管理系统，实现医学内容的创建、管理和分发</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center card-hover shadow-md">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-shield text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-dark mb-2">Compliance360</h4>
+                        <p class="text-gray-600">合规管理系统，确保业务运营符合法规要求和公司政策</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Mini Region/Manager Tiles -->
-                <div class="section-title">团队绩效</div>
-                <div class="manager-tiles">
-                    <div class="manager-tile">
-                        <div class="tile-avatar">LZ</div>
-                        <div class="tile-info">
-                            <div class="tile-name">刘泽</div>
-                            <div class="tile-role">区域销售经理</div>
-                        </div>
-                        <div class="tile-kpis">
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill green" style="width: 85%"></div>
-                            </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill green" style="width: 92%"></div>
-                            </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill yellow" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="compliance-dot green"></div>
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">产品管线</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto">
+                    我们致力于开发创新药物，为患者提供更有效的治疗方案，特别是在血液肿瘤和心血管领域。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                    <div class="h-48 bg-accent flex items-center justify-center">
+                        <img src="images/product-aurelimab.svg" alt="AureliMab™" class="h-40 w-auto object-contain">
                     </div>
-                    <div class="manager-tile">
-                        <div class="tile-avatar">HL</div>
-                        <div class="tile-info">
-                            <div class="tile-name">韩磊</div>
-                            <div class="tile-role">区域销售经理</div>
-                        </div>
-                        <div class="tile-kpis">
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill yellow" style="width: 78%"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">AureliMab™</h3>
+                        <p class="text-gray-500 mb-4">复发难治性多发性骨髓瘤</p>
+                        <div class="space-y-3">
+                            <div>
+                                <h4 class="font-semibold text-primary">作用机制</h4>
+                                <p class="text-gray-700">靶向CD38的单克隆抗体</p>
                             </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill green" style="width: 88%"></div>
+                            <div>
+                                <h4 class="font-semibold text-primary">特点</h4>
+                                <p class="text-gray-700">具有高亲和力和强效的细胞毒性作用，能有效清除骨髓瘤细胞</p>
                             </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill red" style="width: 65%"></div>
-                            </div>
-                        </div>
-                        <div class="compliance-dot yellow"></div>
-                    </div>
-                    <div class="manager-tile">
-                        <div class="tile-avatar">WJ</div>
-                        <div class="tile-info">
-                            <div class="tile-name">王静</div>
-                            <div class="tile-role">区域销售经理</div>
-                        </div>
-                        <div class="tile-kpis">
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill green" style="width: 90%"></div>
-                            </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill green" style="width: 95%"></div>
-                            </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill green" style="width: 85%"></div>
+                            <div>
+                                <h4 class="font-semibold text-primary">市场定位</h4>
+                                <p class="text-gray-700">二线及以上治疗选择，尤其适用于复发难治性患者</p>
                             </div>
                         </div>
-                        <div class="compliance-dot green"></div>
                     </div>
                 </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                    <div class="h-48 bg-accent flex items-center justify-center">
+                        <img src="images/product-lymphoaxis.svg" alt="LymphoAxis™" class="h-40 w-auto object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">LymphoAxis™</h3>
+                        <p class="text-gray-500 mb-4">霍奇金淋巴瘤、弥漫性大B细胞淋巴瘤</p>
+                        <div class="space-y-3">
+                            <div>
+                                <h4 class="font-semibold text-primary">作用机制</h4>
+                                <p class="text-gray-700">靶向CD20的新型抗体药物偶联物（ADC）</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-primary">特点</h4>
+                                <p class="text-gray-700">具有精准靶向性和强效抗肿瘤活性，对复发难治性淋巴瘤效果显著</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-primary">市场定位</h4>
+                                <p class="text-gray-700">一线联合治疗方案的重要组成部分，以及复发难治性淋巴瘤的挽救治疗</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                    <div class="h-48 bg-accent flex items-center justify-center">
+                        <img src="images/product-cardioaureli.svg" alt="CardioAureli™" class="h-40 w-auto object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">CardioAureli™</h3>
+                        <p class="text-gray-500 mb-4">高胆固醇血症，尤其是心血管高风险患者</p>
+                        <div class="space-y-3">
+                            <div>
+                                <h4 class="font-semibold text-primary">作用机制</h4>
+                                <p class="text-gray-700">PCSK9抑制剂</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-primary">特点</h4>
+                                <p class="text-gray-700">强效降低LDL-C水平，显著减少心血管事件风险</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-primary">市场定位</h4>
+                                <p class="text-gray-700">高风险患者的一线治疗选择，尤其是对他汀类药物反应不佳的患者</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Alerts Summary -->
-                <div class="section-title">警报</div>
-                <div class="alerts-chips">
-                    <div class="alert-chip">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M8 2v4"></path>
-                            <path d="M8 10v4"></path>
-                            <circle cx="8" cy="8" r="6"></circle>
-                        </svg>
-                        <span>同意书即将过期 (2)</span>
+    <!-- Organization Section -->
+    <section id="organization" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">组织架构</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <!-- Core Teams -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold text-dark mb-8 text-center">核心团队</h3>
+                <p class="text-center text-gray-600 mb-8">点击团队卡片查看详细组织架构</p>
+                <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <!-- HR Team -->
+                    <div class="bg-accent rounded-lg p-4 text-center card-hover cursor-pointer" onclick="toggleOrgStructure('hr')">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-users text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">人力资源团队</h4>
+                        <p class="text-gray-600 text-sm mt-2">负责人才招聘、培训、绩效管理等</p>
+                        <i class="fa fa-chevron-down text-primary mt-3 transition-transform" id="hr-icon"></i>
                     </div>
-                    <div class="alert-chip">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M8 2v4"></path>
-                            <path d="M8 10v4"></path>
-                            <circle cx="8" cy="8" r="6"></circle>
-                        </svg>
-                        <span>质量 < 85 (1)</span>
+                    
+                    <!-- Sales Team -->
+                    <div class="bg-accent rounded-lg p-4 text-center card-hover cursor-pointer" onclick="toggleOrgStructure('sales')">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-line-chart text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">销售团队</h4>
+                        <p class="text-gray-600 text-sm mt-2">负责产品销售、客户关系维护等</p>
+                        <i class="fa fa-chevron-down text-primary mt-3 transition-transform" id="sales-icon"></i>
                     </div>
-                    <div class="alert-chip">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M8 2v4"></path>
-                            <path d="M8 10v4"></path>
-                            <circle cx="8" cy="8" r="6"></circle>
-                        </svg>
-                        <span>新业务获取 < 70 (1)</span>
+                    
+                    <!-- Marketing Team -->
+                    <div class="bg-accent rounded-lg p-4 text-center card-hover cursor-pointer" onclick="toggleOrgStructure('marketing')">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-bullhorn text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">市场团队</h4>
+                        <p class="text-gray-600 text-sm mt-2">负责市场策略、品牌推广、产品定位等</p>
+                        <i class="fa fa-chevron-down text-primary mt-3 transition-transform" id="marketing-icon"></i>
+                    </div>
+                    
+                    <!-- Medical Team -->
+                    <div class="bg-accent rounded-lg p-4 text-center card-hover cursor-pointer" onclick="toggleOrgStructure('medical')">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-user-md text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">医学团队</h4>
+                        <p class="text-gray-600 text-sm mt-2">负责医学事务、KOL管理、临床支持等</p>
+                        <i class="fa fa-chevron-down text-primary mt-3 transition-transform" id="medical-icon"></i>
+                    </div>
+                    
+                    <!-- Digital Team -->
+                    <div class="bg-accent rounded-lg p-4 text-center card-hover cursor-pointer" onclick="toggleOrgStructure('digital')">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-laptop text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">数字化团队</h4>
+                        <p class="text-gray-600 text-sm mt-2">负责数字化战略、系统开发与维护等</p>
+                        <i class="fa fa-chevron-down text-primary mt-3 transition-transform" id="digital-icon"></i>
+                    </div>
+                    
+                    <!-- IT Team -->
+                    <div class="bg-accent rounded-lg p-4 text-center card-hover cursor-pointer" onclick="toggleOrgStructure('it')">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-server text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-dark">IT团队</h4>
+                        <p class="text-gray-600 text-sm mt-2">负责信息系统、网络安全、技术支持等</p>
+                        <i class="fa fa-chevron-down text-primary mt-3 transition-transform" id="it-icon"></i>
                     </div>
                 </div>
-
-                <!-- Quick Actions -->
-                <div class="quick-actions">
-                    <button class="action-button">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M10 5v10"></path>
-                            <path d="M5 10h10"></path>
-                        </svg>
-                        <span>辅导计划</span>
-                    </button>
-                    <button class="action-button">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        <span>导出</span>
-                    </button>
-                    <button class="action-button">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="10" cy="10" r="3"></circle>
-                            <path d="M10 2v2"></path>
-                            <path d="M10 16v2"></path>
-                            <path d="M2 10h2"></path>
-                            <path d="M16 10h2"></path>
-                            <path d="M4.93 4.93l1.41 1.41"></path>
-                            <path d="M13.66 13.66l1.41 1.41"></path>
-                            <path d="M4.93 15.07l1.41-1.41"></path>
-                            <path d="M13.66 6.34l1.41-1.41"></path>
-                        </svg>
-                        <span>阈值</span>
-                    </button>
-                </div>
-            </section>
-
-            <!-- Org Tree Screen -->
-            <section id="org" class="screen">
-                <div class="section-title">组织架构</div>
-                <div class="org-tree">
-                    <div class="org-node">
-                        <div class="node-header">
-                            <div class="node-avatar">SY</div>
-                            <div class="node-info">
-                                <div class="node-name">宋雅文</div>
-                                <div class="node-role">区域销售经理 - 华东</div>
+                
+                <!-- Team Structure Details -->
+                <div id="team-structures" class="mt-8 space-y-6">
+                    <!-- HR Structure -->
+                    <div id="hr-structure" class="hidden bg-white rounded-xl shadow-md p-6">
+                        <h4 class="text-xl font-semibold text-primary mb-4">人力资源团队组织架构</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">职位</th>
+                                        <th class="border border-gray-200 p-3 text-left">职责</th>
+                                        <th class="border border-gray-200 p-3 text-left">人数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">人力资源总监</td>
+                                        <td class="border border-gray-200 p-3">负责公司整体人力资源战略规划和管理</td>
+                                        <td class="border border-gray-200 p-3">1</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">招聘经理</td>
+                                        <td class="border border-gray-200 p-3">负责人才招聘和选拔</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">培训经理</td>
+                                        <td class="border border-gray-200 p-3">负责员工培训和发展</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">薪酬福利专员</td>
+                                        <td class="border border-gray-200 p-3">负责薪酬福利管理</td>
+                                        <td class="border border-gray-200 p-3">3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Sales Structure -->
+                    <div id="sales-structure" class="hidden bg-white rounded-xl shadow-md p-6">
+                        <h4 class="text-xl font-semibold text-primary mb-4">销售团队组织架构</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">职位</th>
+                                        <th class="border border-gray-200 p-3 text-left">职责</th>
+                                        <th class="border border-gray-200 p-3 text-left">人数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">销售总监</td>
+                                        <td class="border border-gray-200 p-3">负责销售战略制定和团队管理</td>
+                                        <td class="border border-gray-200 p-3">1</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">大区经理</td>
+                                        <td class="border border-gray-200 p-3">负责大区销售管理和团队建设</td>
+                                        <td class="border border-gray-200 p-3">4</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">区域经理</td>
+                                        <td class="border border-gray-200 p-3">负责区域销售目标达成</td>
+                                        <td class="border border-gray-200 p-3">12</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">医药代表</td>
+                                        <td class="border border-gray-200 p-3">负责产品推广和客户维护</td>
+                                        <td class="border border-gray-200 p-3">60</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Marketing Structure -->
+                    <div id="marketing-structure" class="hidden bg-white rounded-xl shadow-md p-6">
+                        <h4 class="text-xl font-semibold text-primary mb-4">市场团队组织架构</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">职位</th>
+                                        <th class="border border-gray-200 p-3 text-left">职责</th>
+                                        <th class="border border-gray-200 p-3 text-left">人数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">市场总监</td>
+                                        <td class="border border-gray-200 p-3">负责市场战略制定和品牌管理</td>
+                                        <td class="border border-gray-200 p-3">1</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">产品经理</td>
+                                        <td class="border border-gray-200 p-3">负责产品策略和市场推广</td>
+                                        <td class="border border-gray-200 p-3">3</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">市场经理</td>
+                                        <td class="border border-gray-200 p-3">负责区域市场活动执行</td>
+                                        <td class="border border-gray-200 p-3">6</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">市场专员</td>
+                                        <td class="border border-gray-200 p-3">负责市场活动支持和数据分析</td>
+                                        <td class="border border-gray-200 p-3">8</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Digital Structure -->
+                    <div id="digital-structure" class="hidden bg-white rounded-xl shadow-md p-6">
+                        <h4 class="text-xl font-semibold text-primary mb-4">数字化团队组织架构</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">职位</th>
+                                        <th class="border border-gray-200 p-3 text-left">职责</th>
+                                        <th class="border border-gray-200 p-3 text-left">人数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">数字化总监</td>
+                                        <td class="border border-gray-200 p-3">负责数字化战略规划和团队管理</td>
+                                        <td class="border border-gray-200 p-3">1</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">HCP360负责人</td>
+                                        <td class="border border-gray-200 p-3">负责HCP360系统开发和维护</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">HCO360负责人</td>
+                                        <td class="border border-gray-200 p-3">负责HCO360系统开发和维护</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">REP360负责人</td>
+                                        <td class="border border-gray-200 p-3">负责REP360系统开发和维护</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">Medical360负责人</td>
+                                        <td class="border border-gray-200 p-3">负责Medical360系统开发和维护</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">Content360负责人</td>
+                                        <td class="border border-gray-200 p-3">负责Content360系统开发和维护</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">Compliance360负责人</td>
+                                        <td class="border border-gray-200 p-3">负责Compliance360系统开发和维护</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">数据分析师</td>
+                                        <td class="border border-gray-200 p-3">负责数据分析和洞察挖掘</td>
+                                        <td class="border border-gray-200 p-3">4</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">前端开发工程师</td>
+                                        <td class="border border-gray-200 p-3">负责系统前端开发和用户界面设计</td>
+                                        <td class="border border-gray-200 p-3">4</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">后端开发工程师</td>
+                                        <td class="border border-gray-200 p-3">负责系统后端开发和数据库管理</td>
+                                        <td class="border border-gray-200 p-3">4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- IT Structure -->
+                    <div id="it-structure" class="hidden bg-white rounded-xl shadow-md p-6">
+                        <h4 class="text-xl font-semibold text-primary mb-4">IT团队组织架构</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">职位</th>
+                                        <th class="border border-gray-200 p-3 text-left">职责</th>
+                                        <th class="border border-gray-200 p-3 text-left">人数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">IT总监</td>
+                                        <td class="border border-gray-200 p-3">负责IT战略规划和团队管理</td>
+                                        <td class="border border-gray-200 p-3">1</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">系统架构师</td>
+                                        <td class="border border-gray-200 p-3">负责系统架构设计和技术选型</td>
+                                        <td class="border border-gray-200 p-3">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">开发工程师</td>
+                                        <td class="border border-gray-200 p-3">负责系统开发和维护</td>
+                                        <td class="border border-gray-200 p-3">8</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">运维工程师</td>
+                                        <td class="border border-gray-200 p-3">负责系统运维和安全管理</td>
+                                        <td class="border border-gray-200 p-3">4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Medical Structure -->
+                    <div id="medical-structure" class="hidden bg-white rounded-xl shadow-md p-6">
+                        <h4 class="text-xl font-semibold text-primary mb-4">医学团队详细架构</h4>
+                        
+                        <!-- Headquarters -->
+                        <div class="mb-8">
+                            <h5 class="text-lg font-semibold text-dark mb-4">总部层面</h5>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead>
+                                        <tr class="bg-accent">
+                                            <th class="border border-gray-200 p-3 text-left">职位</th>
+                                            <th class="border border-gray-200 p-3 text-left">职责</th>
+                                            <th class="border border-gray-200 p-3 text-left">人数</th>
+                                            <th class="border border-gray-200 p-3 text-left">汇报对象</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">医学事务高级总监</td>
+                                            <td class="border border-gray-200 p-3">负责医学事务整体战略规划，协调跨部门合作，监督KPI执行</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">公司高管</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">血液肿瘤治疗领域医学总监</td>
+                                            <td class="border border-gray-200 p-3">负责血液肿瘤领域（AureliMab™、LymphoAxis™）的医学策略和KOL管理</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">医学事务高级总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">心血管治疗领域医学总监</td>
+                                            <td class="border border-gray-200 p-3">负责心血管领域（CardioAureli™）的医学策略和KOL管理</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">医学事务高级总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">医学事务运营经理</td>
+                                            <td class="border border-gray-200 p-3">负责医学团队的日常运营管理，包括培训、合规和数据管理</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">医学事务高级总监</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="node-expand">▼</div>
                         </div>
-                        <div class="node-children">
-                            <div class="org-node">
-                                <div class="node-header">
-                                    <div class="node-avatar">LZ</div>
-                                    <div class="node-info">
-                                        <div class="node-name">刘泽</div>
-                                        <div class="node-role">助理区域销售经理</div>
-                                    </div>
-                                    <div class="node-kpis">
-                                        <div class="kpi-bar small">
-                                            <div class="kpi-bar-fill" style="width: 85%"></div>
-                                        </div>
-                                        <div class="kpi-bar small">
-                                            <div class="kpi-bar-fill" style="width: 92%"></div>
-                                        </div>
-                                        <div class="kpi-bar small">
-                                            <div class="kpi-bar-fill" style="width: 75%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="compliance-dot green"></div>
-                                    <div class="node-expand">▼</div>
-                                </div>
-                                <div class="node-children">
-                                    <div class="org-node">
-                                        <div class="node-header">
-                                            <div class="node-avatar">ZT</div>
-                                            <div class="node-info">
-                                                <div class="node-name">张桐</div>
-                                                <div class="node-role">医药代表</div>
-                                                <div class="node-city">上海</div>
-                                            </div>
-                                            <div class="node-kpis">
-                                                <div class="kpi-bar small">
-                                                    <div class="kpi-bar-fill" style="width: 88%"></div>
-                                                </div>
-                                                <div class="kpi-bar small">
-                                                    <div class="kpi-bar-fill" style="width: 90%"></div>
-                                                </div>
-                                                <div class="kpi-bar small">
-                                                    <div class="kpi-bar-fill" style="width: 78%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="compliance-dot green"></div>
-                                        </div>
-                                    </div>
-                                    <div class="org-node">
-                                        <div class="node-header">
-                                            <div class="node-avatar">WJ</div>
-                                            <div class="node-info">
-                                                <div class="node-name">王静</div>
-                                                <div class="node-role">医药代表</div>
-                                                <div class="node-city">杭州</div>
-                                            </div>
-                                            <div class="node-kpis">
-                                                <div class="kpi-bar small">
-                                                    <div class="kpi-bar-fill" style="width: 75%"></div>
-                                                </div>
-                                                <div class="kpi-bar small">
-                                                    <div class="kpi-bar-fill" style="width: 85%"></div>
-                                                </div>
-                                                <div class="kpi-bar small">
-                                                    <div class="kpi-bar-fill" style="width: 65%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="compliance-dot yellow"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="org-node">
-                                <div class="node-header">
-                                    <div class="node-avatar">HL</div>
-                                    <div class="node-info">
-                                        <div class="node-name">韩磊</div>
-                                        <div class="node-role">助理区域销售经理</div>
-                                    </div>
-                                    <div class="node-kpis">
-                                        <div class="kpi-bar small">
-                                            <div class="kpi-bar-fill" style="width: 78%"></div>
-                                        </div>
-                                        <div class="kpi-bar small">
-                                            <div class="kpi-bar-fill" style="width: 88%"></div>
-                                        </div>
-                                        <div class="kpi-bar small">
-                                            <div class="kpi-bar-fill" style="width: 65%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="compliance-dot yellow"></div>
-                                    <div class="node-expand">▼</div>
-                                </div>
+                        
+                        <!-- Regional -->
+                        <div>
+                            <h5 class="text-lg font-semibold text-dark mb-4">区域层面</h5>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead>
+                                        <tr class="bg-accent">
+                                            <th class="border border-gray-200 p-3 text-left">区域</th>
+                                            <th class="border border-gray-200 p-3 text-left">职位</th>
+                                            <th class="border border-gray-200 p-3 text-left">职责</th>
+                                            <th class="border border-gray-200 p-3 text-left">人数</th>
+                                            <th class="border border-gray-200 p-3 text-left">汇报对象</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">华东区</td>
+                                            <td class="border border-gray-200 p-3 font-medium">血液肿瘤医学经理</td>
+                                            <td class="border border-gray-200 p-3">管理华东区血液肿瘤领域MSL团队，协调KOL活动</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">血液肿瘤治疗领域医学总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">华东区</td>
+                                            <td class="border border-gray-200 p-3 font-medium">心血管医学经理</td>
+                                            <td class="border border-gray-200 p-3">管理华东区心血管领域MSL团队，协调KOL活动</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">心血管治疗领域医学总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">华北区</td>
+                                            <td class="border border-gray-200 p-3 font-medium">血液肿瘤医学经理</td>
+                                            <td class="border border-gray-200 p-3">管理华北区血液肿瘤领域MSL团队，协调KOL活动</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">血液肿瘤治疗领域医学总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">华北区</td>
+                                            <td class="border border-gray-200 p-3 font-medium">心血管医学经理</td>
+                                            <td class="border border-gray-200 p-3">管理华北区心血管领域MSL团队，协调KOL活动</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">心血管治疗领域医学总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">华南区</td>
+                                            <td class="border border-gray-200 p-3 font-medium">血液肿瘤医学经理</td>
+                                            <td class="border border-gray-200 p-3">管理华南区血液肿瘤领域MSL团队，协调KOL活动</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">血液肿瘤治疗领域医学总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">华南区</td>
+                                            <td class="border border-gray-200 p-3 font-medium">心血管医学经理</td>
+                                            <td class="border border-gray-200 p-3">管理华南区心血管领域MSL团队，协调KOL活动</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">心血管治疗领域医学总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">华西/其他区</td>
+                                            <td class="border border-gray-200 p-3 font-medium">血液肿瘤医学经理</td>
+                                            <td class="border border-gray-200 p-3">管理华西及其他区域血液肿瘤领域MSL团队</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">血液肿瘤治疗领域医学总监</td>
+                                        </tr>
+                                        <tr class="hover:bg-light">
+                                            <td class="border border-gray-200 p-3 font-medium">华西/其他区</td>
+                                            <td class="border border-gray-200 p-3 font-medium">心血管医学经理</td>
+                                            <td class="border border-gray-200 p-3">管理华西及其他区域心血管领域MSL团队</td>
+                                            <td class="border border-gray-200 p-3">1</td>
+                                            <td class="border border-gray-200 p-3">心血管治疗领域医学总监</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+            
+        </div>
+    </section>
 
-            <!-- KPIs Trends Screen -->
-            <section id="kpis" class="screen">
-                <div class="section-title">KPI趋势</div>
-                <div class="filters">
-                    <div class="filter-chip">华东</div>
-                    <div class="filter-chip">所有品牌</div>
-                    <div class="filter-chip">2026年第一季度</div>
-                </div>
-                <div class="trend-card">
-                    <div class="card-title">销售趋势</div>
-                    <div class="chart-container">
-                        <svg width="350" height="200" viewBox="0 0 350 200">
-                            <line x1="0" y1="150" x2="350" y2="150" stroke="#E6ECF2" stroke-width="1"></line>
-                            <line x1="0" y1="100" x2="350" y2="100" stroke="#E6ECF2" stroke-width="1"></line>
-                            <line x1="0" y1="50" x2="350" y2="50" stroke="#E6ECF2" stroke-width="1"></line>
-                            <path d="M0,120 L50,110 L100,130 L150,90 L200,100 L250,80 L300,95 L350,85" fill="none" stroke="#1B6CA8" stroke-width="2"></path>
-                            <path d="M0,100 L50,95 L100,110 L150,80 L200,85 L250,70 L300,80 L350,75" fill="none" stroke="#4DA3D9" stroke-width="2" stroke-dasharray="5,5"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="trend-card">
-                    <div class="card-title">质量构成</div>
-                    <div class="chart-container">
-                        <svg width="350" height="200" viewBox="0 0 350 200">
-                            <rect x="50" y="100" width="40" height="50" fill="#1B6CA8"></rect>
-                            <rect x="50" y="70" width="40" height="30" fill="#4DA3D9"></rect>
-                            <rect x="50" y="50" width="40" height="20" fill="#0EB77A"></rect>
-                            <rect x="120" y="90" width="40" height="60" fill="#1B6CA8"></rect>
-                            <rect x="120" y="60" width="40" height="30" fill="#4DA3D9"></rect>
-                            <rect x="120" y="40" width="40" height="20" fill="#0EB77A"></rect>
-                            <rect x="190" y="80" width="40" height="70" fill="#1B6CA8"></rect>
-                            <rect x="190" y="50" width="40" height="30" fill="#4DA3D9"></rect>
-                            <rect x="190" y="30" width="40" height="20" fill="#0EB77A"></rect>
-                            <rect x="260" y="70" width="40" height="80" fill="#1B6CA8"></rect>
-                            <rect x="260" y="40" width="40" height="30" fill="#4DA3D9"></rect>
-                            <rect x="260" y="20" width="40" height="20" fill="#0EB77A"></rect>
-                        </svg>
-                    </div>
-                </div>
-                <div class="data-table">
-                    <div class="table-header">
-                        <div class="table-cell">姓名</div>
-                        <div class="table-cell">达成率</div>
-                        <div class="table-cell">质量</div>
-                        <div class="table-cell">新业务获取</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell">刘泽</div>
-                        <div class="table-cell">85%</div>
-                        <div class="table-cell">92</div>
-                        <div class="table-cell">75%</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell">韩磊</div>
-                        <div class="table-cell">78%</div>
-                        <div class="table-cell">88</div>
-                        <div class="table-cell">65%</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell">张桐</div>
-                        <div class="table-cell">88%</div>
-                        <div class="table-cell">90</div>
-                        <div class="table-cell">78%</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Tasks Screen -->
-            <section id="tasks" class="screen">
-                <div class="section-title">任务</div>
-                <div class="task-chips">
-                    <div class="task-chip active">全部</div>
-                    <div class="task-chip">辅导</div>
-                    <div class="task-chip">警报</div>
-                    <div class="task-chip">审批</div>
-                </div>
-                <div class="task-list">
-                    <div class="task-item">
-                        <div class="task-icon coaching">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <div class="task-info">
-                            <div class="task-title">辅导计划：韩磊</div>
-                            <div class="task-metric">新业务获取提升</div>
-                            <div class="task-progress">65% → 75%</div>
-                            <div class="task-date">截止日期：2026年4月15日</div>
-                        </div>
-                        <div class="task-actions">
-                            <button class="action-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                    <polyline points="7 10 12 15 17 10"></polyline>
-                                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                                </svg>
-                            </button>
+    <!-- KPI Section -->
+    <section id="kpi" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">KPI体系</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <!-- Sales KPI -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold text-dark mb-6">销售团队KPI</h3>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Sales Manager -->
+                    <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                        <h4 class="text-xl font-semibold text-primary mb-4">销售经理（一线管理层）</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <h5 class="font-medium text-dark mb-2">核心需求</h5>
+                                <p class="text-gray-700">查看直接下属医药代表的KPI进度（非跨级）</p>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-dark mb-2">权限细节</h5>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>可筛选维度：按时间（周/月/季度/自定义周期）、按KPI类型（销量目标、拜访率、客户增长率、处方量、产品覆盖率等）</li>
+                                    <li>可查看内容：下属代表的KPI达成率（百分比/进度条）、完成明细（如月度销量拆分）、未达标预警、关联行动项</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="task-item">
-                        <div class="task-icon alert">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                                <line x1="12" y1="9" x2="12" y2="13"></line>
-                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                            </svg>
+                    
+                    <!-- Regional Director -->
+                    <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                        <h4 class="text-xl font-semibold text-primary mb-4">区域总监（二级管理层）</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <h5 class="font-medium text-dark mb-2">核心需求</h5>
+                                <p class="text-gray-700">查看所辖区域内所有销售经理及其下属代表的KPI全景（支持drill-down钻取）</p>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-dark mb-2">权限细节</h5>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>首屏展示：区域整体KPI达成率、TOP3/末3销售经理/代表排名、核心指标趋势</li>
+                                    <li>钻取能力：点击任一经理，可查看其下属代表的KPI详情；点击任一代表，可穿透到具体客户/产品维度数据</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="task-info">
-                            <div class="task-title">同意书即将过期</div>
-                            <div class="task-metric">2位医疗专业人士需要更新同意书</div>
-                            <div class="task-date">截止日期：2026年4月5日</div>
+                    </div>
+                    
+                    <!-- Marketing Management -->
+                    <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                        <h4 class="text-xl font-semibold text-primary mb-4">市场部管理层</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <h5 class="font-medium text-dark mb-2">核心需求</h5>
+                                <p class="text-gray-700">查看自身负责区域/产品线对应的销售同事KPI（需与市场活动联动）</p>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-dark mb-2">权限细节</h5>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>可关联市场动作：如“某市场推广活动后，对应区域代表的产品销量增长率”</li>
+                                    <li>数据聚焦：优先展示“市场活动转化KPI”、区域销售与市场投入的ROI分析</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- More Screen -->
-            <section id="more" class="screen">
-                <div class="section-title">更多</div>
-                <div class="menu-list">
-                    <div class="menu-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        <span>导出KPI快照</span>
+            </div>
+            
+            <!-- MSL KPI -->
+            <div>
+                <h3 class="text-2xl font-semibold text-dark mb-6">MSL KPI指标体系</h3>
+                
+                <!-- KPI Categories -->
+                <div class="space-y-8">
+                    <!-- Category 1 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-primary text-white p-4">
+                            <h4 class="text-xl font-semibold">科学传播与教育</h4>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">指标</th>
+                                        <th class="border border-gray-200 p-3 text-left">定义</th>
+                                        <th class="border border-gray-200 p-3 text-left">计算方法</th>
+                                        <th class="border border-gray-200 p-3 text-left">数据来源</th>
+                                        <th class="border border-gray-200 p-3 text-left">频率</th>
+                                        <th class="border border-gray-200 p-3 text-left">目标阈值</th>
+                                        <th class="border border-gray-200 p-3 text-left">考核层级</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">外部学术报告次数</td>
+                                        <td class="border border-gray-200 p-3">MSL对外举办学术讲座或研讨会的次数</td>
+                                        <td class="border border-gray-200 p-3">CRM系统或会议记录统计</td>
+                                        <td class="border border-gray-200 p-3">MA系统/CRM</td>
+                                        <td class="border border-gray-200 p-3">季度/年</td>
+                                        <td class="border border-gray-200 p-3">≥4次/年</td>
+                                        <td class="border border-gray-200 p-3">个人</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">内部培训次数</td>
+                                        <td class="border border-gray-200 p-3">MSL对公司内部团队进行医学培训的次数</td>
+                                        <td class="border border-gray-200 p-3">培训记录统计</td>
+                                        <td class="border border-gray-200 p-3">内部培训系统</td>
+                                        <td class="border border-gray-200 p-3">季度</td>
+                                        <td class="border border-gray-200 p-3">≥4次/年</td>
+                                        <td class="border border-gray-200 p-3">团队</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="10" cy="10" r="3"></circle>
-                            <path d="M10 2v2"></path>
-                            <path d="M10 16v2"></path>
-                            <path d="M2 10h2"></path>
-                            <path d="M16 10h2"></path>
-                            <path d="M4.93 4.93l1.41 1.41"></path>
-                            <path d="M13.66 13.66l1.41 1.41"></path>
-                            <path d="M4.93 15.07l1.41-1.41"></path>
-                            <path d="M13.66 6.34l1.41-1.41"></path>
-                        </svg>
-                        <span>阈值</span>
+                    
+                    <!-- Category 2 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-primary text-white p-4">
+                            <h4 class="text-xl font-semibold">临床证据支持</h4>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">指标</th>
+                                        <th class="border border-gray-200 p-3 text-left">定义</th>
+                                        <th class="border border-gray-200 p-3 text-left">计算方法</th>
+                                        <th class="border border-gray-200 p-3 text-left">数据来源</th>
+                                        <th class="border border-gray-200 p-3 text-left">频率</th>
+                                        <th class="border border-gray-200 p-3 text-left">目标阈值</th>
+                                        <th class="border border-gray-200 p-3 text-left">考核层级</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">参与研究项目数量</td>
+                                        <td class="border border-gray-200 p-3">MSL主导或参与的临床研究/II/III期研究项目数量</td>
+                                        <td class="border border-gray-200 p-3">临床项目管理系统统计</td>
+                                        <td class="border border-gray-200 p-3">研发/医学部项目系统</td>
+                                        <td class="border border-gray-200 p-3">年度</td>
+                                        <td class="border border-gray-200 p-3">≥1个/年（视项目规模定）</td>
+                                        <td class="border border-gray-200 p-3">个人</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">患者招募人数</td>
+                                        <td class="border border-gray-200 p-3">MSL推动招募的临床研究患者人数</td>
+                                        <td class="border border-gray-200 p-3">招募数据库统计</td>
+                                        <td class="border border-gray-200 p-3">研发/临床系统</td>
+                                        <td class="border border-gray-200 p-3">年度</td>
+                                        <td class="border border-gray-200 p-3">≥20人/年</td>
+                                        <td class="border border-gray-200 p-3">个人</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                        <span>市场视图</span>
+                    
+                    <!-- Category 3 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-primary text-white p-4">
+                            <h4 class="text-xl font-semibold">KOL关系维护</h4>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">指标</th>
+                                        <th class="border border-gray-200 p-3 text-left">定义</th>
+                                        <th class="border border-gray-200 p-3 text-left">计算方法</th>
+                                        <th class="border border-gray-200 p-3 text-left">数据来源</th>
+                                        <th class="border border-gray-200 p-3 text-left">频率</th>
+                                        <th class="border border-gray-200 p-3 text-left">目标阈值</th>
+                                        <th class="border border-gray-200 p-3 text-left">考核层级</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">核心KOL数量</td>
+                                        <td class="border border-gray-200 p-3">每位MSL负责管理的KOL专家总数</td>
+                                        <td class="border border-gray-200 p-3">CRM系统统计</td>
+                                        <td class="border border-gray-200 p-3">KOL管理系统</td>
+                                        <td class="border border-gray-200 p-3">年度</td>
+                                        <td class="border border-gray-200 p-3">35–45位/人</td>
+                                        <td class="border border-gray-200 p-3">个人</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">KOL拜访频次</td>
+                                        <td class="border border-gray-200 p-3">每位核心KOL年均被拜访次数</td>
+                                        <td class="border border-gray-200 p-3">拜访次数/核心KOL数</td>
+                                        <td class="border border-gray-200 p-3">CRM记录</td>
+                                        <td class="border border-gray-200 p-3">年度</td>
+                                        <td class="border border-gray-200 p-3">≥4次/年/位</td>
+                                        <td class="border border-gray-200 p-3">个人</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">关系质量评分</td>
+                                        <td class="border border-gray-200 p-3">上级评估或KOL满意度调查对MSL关系质量的评分</td>
+                                        <td class="border border-gray-200 p-3">调研打分（1–5分）</td>
+                                        <td class="border border-gray-200 p-3">360度评估/问卷</td>
+                                        <td class="border border-gray-200 p-3">半年</td>
+                                        <td class="border border-gray-200 p-3">≥4/5</td>
+                                        <td class="border border-gray-200 p-3">个人/团队</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="16" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                        </svg>
-                        <span>关于</span>
+                    
+                    <!-- Category 4 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-primary text-white p-4">
+                            <h4 class="text-xl font-semibold">市场情报与洞察</h4>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">指标</th>
+                                        <th class="border border-gray-200 p-3 text-left">定义</th>
+                                        <th class="border border-gray-200 p-3 text-left">计算方法</th>
+                                        <th class="border border-gray-200 p-3 text-left">数据来源</th>
+                                        <th class="border border-gray-200 p-3 text-left">频率</th>
+                                        <th class="border border-gray-200 p-3 text-left">目标阈值</th>
+                                        <th class="border border-gray-200 p-3 text-left">考核层级</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">洞察报告数</td>
+                                        <td class="border border-gray-200 p-3">MSL上传至系统的洞察记录数量</td>
+                                        <td class="border border-gray-200 p-3">系统统计</td>
+                                        <td class="border border-gray-200 p-3">洞察管理平台</td>
+                                        <td class="border border-gray-200 p-3">月度/季度</td>
+                                        <td class="border border-gray-200 p-3">无特定标准（鼓励持续收集）</td>
+                                        <td class="border border-gray-200 p-3">个人</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">洞察行动转化率</td>
+                                        <td class="border border-gray-200 p-3">上报洞察中被项目采纳或产生后续行动的比例</td>
+                                        <td class="border border-gray-200 p-3">被采纳洞察数/总洞察数</td>
+                                        <td class="border border-gray-200 p-3">洞察管理系统</td>
+                                        <td class="border border-gray-200 p-3">季度</td>
+                                        <td class="border border-gray-200 p-3">≥50%</td>
+                                        <td class="border border-gray-200 p-3">团队</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                        <span>KPI术语表</span>
+                    
+                    <!-- Category 5 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-primary text-white p-4">
+                            <h4 class="text-xl font-semibold">合规与风险管理</h4>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-accent">
+                                        <th class="border border-gray-200 p-3 text-left">指标</th>
+                                        <th class="border border-gray-200 p-3 text-left">定义</th>
+                                        <th class="border border-gray-200 p-3 text-left">计算方法</th>
+                                        <th class="border border-gray-200 p-3 text-left">数据来源</th>
+                                        <th class="border border-gray-200 p-3 text-left">频率</th>
+                                        <th class="border border-gray-200 p-3 text-left">目标阈值</th>
+                                        <th class="border border-gray-200 p-3 text-left">考核层级</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">合规培训完成率</td>
+                                        <td class="border border-gray-200 p-3">完成年度合规、反贿赂等必修培训的MSL比例</td>
+                                        <td class="border border-gray-200 p-3">完成培训人数/总MSL人数×100%</td>
+                                        <td class="border border-gray-200 p-3">HR/培训系统</td>
+                                        <td class="border border-gray-200 p-3">年度</td>
+                                        <td class="border border-gray-200 p-3">100%</td>
+                                        <td class="border border-gray-200 p-3">团队</td>
+                                    </tr>
+                                    <tr class="hover:bg-light">
+                                        <td class="border border-gray-200 p-3 font-medium">交流记录完整率</td>
+                                        <td class="border border-gray-200 p-3">MSL学术交流活动（会谈、会议等）记录的完整性</td>
+                                        <td class="border border-gray-200 p-3">记录事件数/实际交流事件数×100%</td>
+                                        <td class="border border-gray-200 p-3">MA档案/CRM</td>
+                                        <td class="border border-gray-200 p-3">季度</td>
+                                        <td class="border border-gray-200 p-3">100%（至少5年保存）</td>
+                                        <td class="border border-gray-200 p-3">团队</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </div>
+    </section>
 
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <button class="nav-item active" data-target="home">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-                <span>首页</span>
-            </button>
-            <button class="nav-item" data-target="org">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-                <span>组织</span>
-            </button>
-            <button class="nav-item" data-target="kpis">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 20V10"></path>
-                    <path d="M12 20V4"></path>
-                    <path d="M6 20v-6"></path>
-                </svg>
-                <span>KPI</span>
-            </button>
-            <button class="nav-item" data-target="tasks">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
-                    <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
-                </svg>
-                <span>任务</span>
-            </button>
-            <button class="nav-item" data-target="more">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="1"></circle>
-                    <circle cx="19" cy="12" r="1"></circle>
-                    <circle cx="5" cy="12" r="1"></circle>
-                </svg>
-                <span>更多</span>
-            </button>
-        </nav>
+    <!-- Systems Section -->
+    <section id="systems" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">管理系统</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Insight 360 -->
+                <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+                    <div class="gradient-bg h-48 flex items-center justify-center">
+                        <h3 class="text-2xl font-bold text-white">Insight 360</h3>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-dark mb-4">MSL洞察管理系统</h4>
+                        <p class="text-gray-700 mb-6">
+                            Insight 360是一款专为MSL设计的小程序，用于管理医学洞察、KPI分析和KOL管理。系统采用医疗科技淡蓝色设计，支持多角色访问和权限控制。
+                        </p>
+                        <div class="space-y-4 mb-6">
+                            <h5 class="font-medium text-primary">核心功能</h5>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>洞察管理：记录、分析和跟踪医学洞察</li>
+                                <li>KPI分析：多维度分析MSL绩效指标</li>
+                                <li>KOL管理：维护KOL信息和互动记录</li>
+                                <li>GRIT框架：支持基于GRIT框架的洞察分析</li>
+                                <li>闭环管理：确保洞察转化为行动并跟踪执行情况</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <a href="insight360.html" class="bg-primary text-white font-semibold py-2 px-6 rounded-lg hover:bg-secondary transition duration-300 inline-flex items-center">
+                                了解详情
+                                <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="https://vita-liang.github.io/insight-360/" target="_blank" class="text-primary font-medium flex items-center hover:underline">
+                                访问系统
+                                <i class="fa fa-external-link ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- REP360 -->
+                <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+                    <div class="gradient-bg h-48 flex items-center justify-center">
+                        <h3 class="text-2xl font-bold text-white">REP360</h3>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-dark mb-4">移动端管理层KPI可视化系统</h4>
+                        <p class="text-gray-700 mb-6">
+                            REP360是一款移动端管理层KPI可视化系统，聚焦“分层级权限管控+精准KPI洞察+沉浸式交互体验”，满足销售经理、区域管理层、市场部管理层三类用户的核心需求。
+                        </p>
+                        <div class="space-y-4 mb-6">
+                            <h5 class="font-medium text-primary">核心功能</h5>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>角色一键切换：支持用户在不同角色间快速切换</li>
+                                <li>分层级KPI驾驶舱：根据用户角色展示不同层级的KPI数据</li>
+                                <li>智能交互与预警：支持数据钻取、预警提醒和手势操作</li>
+                                <li>KPI归因分析：针对未达标KPI自动关联可能因素</li>
+                                <li>跨部门协作入口：支持市场与销售部门的协同工作</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <a href="rep360.html" class="bg-primary text-white font-semibold py-2 px-6 rounded-lg hover:bg-secondary transition duration-300 inline-flex items-center">
+                                了解详情
+                                <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="https://vita-liang.github.io/rep360-manager/" target="_blank" class="text-primary font-medium flex items-center hover:underline">
+                                访问系统
+                                <i class="fa fa-external-link ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Floating Action Button -->
-        <button class="fab">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14"></path>
-                <path d="M5 12h14"></path>
-            </svg>
-        </button>
-    </div>
-    <script src="script.js"></script>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">联系我们</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-dark mb-6">联系信息</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-map-marker text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark">地址</h4>
+                                <p class="text-gray-700">上海市浦东新区张江高科技园区科苑路88号</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark">电话</h4>
+                                <p class="text-gray-700">+86 21 5888 8888</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark">邮箱</h4>
+                                <p class="text-gray-700">contact@aureliaxis.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="font-medium text-dark mb-4">关注我们</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white hover:opacity-90 transition duration-300">
+                                <i class="fa fa-weixin"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white hover:opacity-90 transition duration-300">
+                                <i class="fa fa-weibo"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white hover:opacity-90 transition duration-300">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-dark mb-6">发送消息</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">消息</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white font-semibold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300">
+                            发送消息
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="footer-logo-container">
+                            <img src="images/logo-white.svg" alt="AureliAxis Pharmaceuticals" class="h-10 w-auto object-contain" onerror="this.src='images/logo-white.png'">
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        致力于为患者提供高质量的创新治疗方案，特别是在血液肿瘤和心血管领域。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">公司概述</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white transition duration-300">产品管线</a></li>
+                        <li><a href="#organization" class="text-gray-400 hover:text-white transition duration-300">组织架构</a></li>
+                        <li><a href="#kpi" class="text-gray-400 hover:text-white transition duration-300">KPI体系</a></li>
+                        <li><a href="#systems" class="text-gray-400 hover:text-white transition duration-300">管理系统</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">产品</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">AureliMab™</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">LymphoAxis™</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">CardioAureli™</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系我们</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fa fa-map-marker mr-2"></i>
+                            <span>上海市浦东新区张江高科技园区科苑路88号</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fa fa-phone mr-2"></i>
+                            <span>+86 21 5888 8888</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fa fa-envelope mr-2"></i>
+                            <span>contact@aureliaxis.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2026 AureliAxis Pharmaceuticals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Active Navigation Link
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active-nav');
+                }
+            });
+        });
+
+        // Organization Structure Toggle Function
+        function toggleOrgStructure(team) {
+            const structure = document.getElementById(team + '-structure');
+            const icon = document.getElementById(team + '-icon');
+            
+            // Hide all other structures
+            const allStructures = document.querySelectorAll('[id$="-structure"]');
+            const allIcons = document.querySelectorAll('[id$="-icon"]');
+            
+            allStructures.forEach(el => {
+                if (el.id !== team + '-structure') {
+                    el.classList.add('hidden');
+                }
+            });
+            
+            allIcons.forEach(el => {
+                if (el.id !== team + '-icon') {
+                    el.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current structure
+            if (structure.classList.contains('hidden')) {
+                structure.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+                // Scroll to the structure
+                setTimeout(() => {
+                    structure.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            } else {
+                structure.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Logo Error Handling - Fallback to text logo if image fails to load
+        document.addEventListener('DOMContentLoaded', function() {
+            const headerLogo = document.querySelector('.logo-container img');
+            const footerLogo = document.querySelector('.footer-logo-container img');
+            
+            // Header logo fallback
+            if (headerLogo) {
+                headerLogo.addEventListener('error', function() {
+                    const container = this.parentElement;
+                    container.innerHTML = `
+                        <div class="flex items-center space-x-2">
+                            <div class="logo-fallback">A</div>
+                            <div>
+                                <h1 class="text-2xl font-bold text-dark">AureliAxis</h1>
+                                <p class="text-sm text-gray-500">奥瑞立科医药</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            // Footer logo fallback
+            if (footerLogo) {
+                footerLogo.addEventListener('error', function() {
+                    const container = this.parentElement;
+                    container.innerHTML = `
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                                <span class="text-primary font-bold text-xl">A</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">AureliAxis</h3>
+                                <p class="text-sm text-gray-400">奥瑞立科医药</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
